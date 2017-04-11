@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>คำขวัญประจำจังหวัด</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+        <link href="https://fonts.googleapis.com/css?family=Itim|Pridi|Taviraj|Trirong" rel="stylesheet">
+
+        <style>
+            body {
+                background: url(IMG_87385.jpg) no-repeat center fixed; 
+                background-size: cover;
+            }
+
+            div.container {
+                padding-left: 185px;
+                width: 70%;
+                /*border: 1px solid bisque;*/
+            }
+
+            header {
+                clear: left;
+                padding: 1em;
+                background: url(yellow.jpg) no-repeat center fixed;
+                background-size: cover;
+                color: darkblue;
+                text-align: center;
+                /*width: 1000px;*/
+                font-family: 'Pridi', serif;
+                font-size: 40px;
+                letter-spacing: 3px;
+            }
+
+
+            #contact {
+                margin-top: 0px;
+                padding: 20px;
+                font-family: 'Pridi', serif;
+                /*text-align: center;*/
+                background: url(back.png); 
+            }
+
+            #contact label{
+                display: inline-block;
+                width: 390px;
+                text-align: right;
+            }
+
+            #contact div{
+                font-family: 'Pridi', serif;
+                margin-top: 1em;
+            }
+
+
+            #button_submit {
+                padding-top: 40px;
+                padding-left: 370px;
+            }
+
+            .error{
+                display: none;
+                margin-left: 10px;
+            }		
+
+            .error_show{
+                color: red;
+                margin-left: 10px;
+            }
+
+            input.invalid{
+                border: 2px solid red;
+            }
+
+            input.valid{
+                border: 2px solid green;
+            }
+
+            h2{
+                color: darkblue; 
+                font-size: 40px;
+            }
+
+            p {
+                color: darkblue; 
+                font-size: 26px;
+            }
+
+            .slogan {
+                text-align: center;
+            }
+
+            .childBody {
+                background: url(IMG_211515.jpg) no-repeat center fixed; 
+                background-size: cover;
+            }
+
+            .childHead{
+                background: url(yellow-orange-background.jpg) no-repeat center;
+                background-size: cover;
+            }
+            .childForm {
+                background: url(orback.png); 
+            }
+
+            .womenBody {
+                background: url(IMG_139311.jpg) no-repeat center fixed; 
+                background-size: cover;
+            }
+
+            .womenHead {
+                background: url(pink-curves-wallpaper-3.jpg) no-repeat center;
+                background-size: cover;
+            }
+
+            .womenForm {
+                background: url(pinkback.png); 
+            }
+
+            .menBody {
+                background: url(IMG_128147.jpg) no-repeat center fixed; 
+                background-size: cover;
+            }
+
+            .menHead {
+                background: url(b1.jpg) no-repeat center;
+                background-size: cover;
+            }
+
+            .menForm {
+                background: url(grayback.png); 
+            }
+        </style>
+
+        <script>
+            function init() {
+                $("#provImg, #sloganText").hide();
+            }
+            
+            function requestMottoData() {
+                var provincefilename = document.getElementById("contact_province").value;
+                document.getElementById("provi").innerHTML = provincefilename.replace(".txt", "");
+                $("#sloganText").load("provinceDetail/motto/" + provincefilename + ".txt");
+                $("#provImg").attr("src", "provinceDetail/sign/" + provincefilename + ".png");
+                $("#provImg").show();
+                $("#sloganText").show();
+            }
+
+
+            $(document).ready(function () {
+                init();
+                var gen;
+                var prov;
+                $('#contact_firstname').on('input', function () {
+                    var input = $(this);
+                    var is_firstname = input.val();
+                    if (is_firstname) {
+                        input.removeClass("invalid").addClass("valid");
+                    } else {
+                        input.removeClass("valid").addClass("invalid");
+                    }
+                });
+
+                $('#contact_lastname').on('input', function () {
+                    var input = $(this);
+                    var is_lastname = input.val();
+                    if (is_lastname) {
+                        input.removeClass("invalid").addClass("valid");
+                    } else {
+                        input.removeClass("valid").addClass("invalid");
+                    }
+                });
+
+                $('#contact_birthday').on('input', function () {
+                    var input = $(this);
+                    var is_birthday = input.val();
+                    if (is_birthday) {
+                        input.removeClass("invalid").addClass("valid");
+                    } else {
+                        input.removeClass("valid").addClass("invalid");
+                    }
+                });
+
+                $('input:radio[name="contact_gender"]').on('change', function () {
+                    var input = $(this);
+                    var is_gender = input.val();
+                    if (is_gender) {
+                        input.removeClass("invalid").addClass("valid");
+                        gen = is_gender;
+//                         document.getElementById("demo").innerHTML = is_gender;
+                    } else {
+                        input.removeClass("valid").addClass("invalid");
+                    }
+                });
+
+                $('#contact_province').on('change', function () {
+                    var input = $(this);
+                    var is_province = input.val();
+//                    document.getElementById("demo").innerHTML = is_gender;
+                    if (is_province) {
+                        input.removeClass("invalid").addClass("valid");
+                        prov = is_province;
+                    } else {
+                        input.removeClass("valid").addClass("invalid");
+                    }
+                });
+
+
+                $("#button_submit button").click(function (event) {
+                    var form_data = $("#contact").serializeArray();
+                    var error_free = true;
+                    for (var input in form_data) {
+                        var element = $("#contact_" + form_data[input]['name']);
+                        var valid = element.hasClass("valid");
+                        var error_element = $("span", element.parent());
+                        if (!valid) {
+                            error_element.removeClass("error").addClass("error_show");
+                            error_free = false;
+                        } else {
+
+                            error_element.removeClass("error_show").addClass("error");
+                            error_free = true;
+
+
+                        }
+                    }
+//                    document.getElementById("demo").innerHTML = error_free;
+                    if (!error_free) {
+                        event.preventDefault();
+                    } else {
+//                        alert('No errors: Form will be submitted');
+                        requestMottoData();
+
+                        var birthday = $('#contact_birthday').val();
+                        var year = parseInt(JSON.stringify(birthday).substr(1, 4));
+                        var d = new Date();
+                        var yearFull = parseInt(d.getFullYear())
+                        var age = yearFull - year;
+                        if (age < 13) {
+                            $("body").addClass("childBody");
+                            $("header").addClass("childHead");
+                            $("#contact").addClass("childForm");
+                        } else if (gen == "female") {
+                            $("body").addClass("womenBody");
+                            $("header").addClass("womenHead");
+                            $("#contact").addClass("womenForm");
+                        } else if (gen == "male") {
+                            $("body").addClass("menBody");
+                            $("header").addClass("menHead");
+                            $("#contact").addClass("menForm");
+                        }
+                        return false;
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <header class="head">
+                <h1>คำขวัญประจำจังหวัด</h1>
+            </header>
+
+
+            <form id="contact" method="post" action="">
+                <div>
+                    <label for="contact_firstname">ชื่อ &emsp;&emsp;</label>
+                    <input type="text" id="contact_firstname" name="firstname">
+                    <span class="error"><< กรอกชื่อ</span>
+                </div>
+                <div>
+                    <label for="contact_lastname">นามสกุล &emsp;&emsp;</label>
+                    <input type="text" id="contact_lastname" name="lastname">
+                    <span class="error"><< กรอกนามสกุล</span>
+                </div>
+                <div>
+                    <label for="contact_birthday">วันเกิด &emsp;&emsp;</label>
+                    <input type="date" id="contact_birthday" name="birthday" value="">
+                    <span class="error"><< กรอกวันเกิด</span>
+                </div>
+                <div>
+                    <label for="contact_gender">เพศ &emsp;&emsp;</label>
+                    <input type="radio" id="male" name="contact_gender" value="male"> ชาย
+                    &emsp;&emsp;<input type="radio" id="female" name="contact_gender" value="female"> หญิง
+                    <span class="error"><< ระบุเพศ</span>
+                </div>
+                <div>
+                    <label for="contact_province">จังหวัด &emsp;&emsp;</label>
+                    <select id="contact_province" name="province">
+                        <option value="จันทบุรี">จันทบุรี</option>
+                        <option value="ฉะเชิงเทรา">ฉะเชิงเทรา</option>
+                        <option value="ชลบุรี">ชลบุรี</option>
+                        <option value="ตราด">ตราด</option>
+                        <option value="ปราจีนบุรี">ปราจีนบุรี</option>
+                        <option value="ระยอง">ระยอง</option>
+                        <option value="สระแก้ว">สระแก้ว</option>
+                        <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
+                        <option value="กำแพงเพชร">กำแพงเพชร</option>
+                        <option value="ชัยนาท">ชัยนาท</option>
+                        <option value="นครนายก">นครนายก</option>
+                        <option value="นครปฐม">นครปฐม</option>
+                        <option value="นครสวรรค์">นครสวรรค์</option>
+                        <option value="นนทบุรี">นนทบุรี</option>
+                        <option value="ปทุมธานี">ปทุมธานี</option>
+                        <option value="พระนครศรีอยุธยา">พระนครศรีอยุธยา</option>
+                        <option value="พิจิตร">พิจิตร</option>
+                        <option value="พิษณุโลก">พิษณุโลก</option>
+                        <option value="ลพบุรี">ลพบุรี</option>
+                        <option value="สมุทรปราการ">สมุทรปราการ</option>
+                        <option value="สมุทรสงคราม">สมุทรสงคราม</option>
+                        <option value="สมุทรสาคร">สมุทรสาคร</option>
+                        <option value="สระบุรี">สระบุรี</option>
+                        <option value="สิงห์บุรี">สิงห์บุรี</option>
+                        <option value="สุพรรณบุรี">สุพรรณบุรี</option>
+                        <option value="สุโขทัย">สุโขทัย</option>
+                        <option value="อุทัยธานี">อุทัยธานี</option>
+                        <option value="อ่างทอง">อ่างทอง</option>
+                        <option value="เพชรบูรณ์">เพชรบูรณ์</option>
+                        <option value="น่าน">น่าน</option>
+                        <option value="พะเยา">พะเยา</option>
+                        <option value="ลำปาง">ลำปาง</option>
+                        <option value="ลำพูน">ลำพูน</option>
+                        <option value="อุตรดิตถ์">อุตรดิตถ์</option>
+                        <option value="เชียงราย">เชียงราย</option>
+                        <option value="เชียงใหม่">เชียงใหม่</option>
+                        <option value="แม่ฮ่องสอน">แม่ฮ่องสอน</option>
+                        <option value="แพร่">แพร่</option>
+                        <option value="กาฬสินธุ์">กาฬสินธุ์</option>
+                        <option value="ขอนแก่น">ขอนแก่น</option>
+                        <option value="ชัยภูมิ">ชัยภูมิ</option>
+                        <option value="นครพนม">นครพนม</option>
+                        <option value="นครราชสีมา">นครราชสีมา</option>
+                        <option value="บึงกาฬ">บึงกาฬ</option>
+                        <option value="บุรีรัมย์">บุรีรัมย์</option>
+                        <option value="มหาสารคาม">มหาสารคาม</option>
+                        <option value="มุกดาหาร">มุกดาหาร</option>
+                        <option value="ยโสธร">ยโสธร</option>
+                        <option value="ร้อยเอ็ด">ร้อยเอ็ด</option>
+                        <option value="ศรีสะเกษ">ศรีสะเกษ</option>
+                        <option value="สกลนคร">สกลนคร</option>
+                        <option value="สุรินทร์">สุรินทร์</option>
+                        <option value="หนองคาย">หนองคาย</option>
+                        <option value="หนองบัวลำภู">หนองบัวลำภู</option>
+                        <option value="อำนาจเจริญ">อำนาจเจริญ</option>
+                        <option value="อุดรธานี">อุดรธานี</option>
+                        <option value="อุบลราชธานี">อุบลราชธานี</option>
+                        <option value="เลย">เลย</option>
+                        <option value="กระบี่">กระบี่</option>
+                        <option value="ชุมพร">ชุมพร</option>
+                        <option value="ตรัง">ตรัง</option>
+                        <option value="นครศรีธรรมราช">นครศรีธรรมราช</option>
+                        <option value="นราธิวาส">นราธิวาส</option>
+                        <option value="ปัตตานี">ปัตตานี</option>
+                        <option value="พังงา">พังงา</option>
+                        <option value="พัทลุง">พัทลุง</option>
+                        <option value="ภูเก็ต">ภูเก็ต</option>
+                        <option value="ยะลา">ยะลา</option>
+                        <option value="ระนอง">ระนอง</option>
+                        <option value="สงขลา">สงขลา</option>
+                        <option value="สตูล">สตูล</option>
+                        <option value="สุราษฎร์ธานี">สุราษฎร์ธานี</option>
+                        <option value="กาญจนบุรี">กาญจนบุรี</option>
+                        <option value="ตาก">ตาก</option>
+                        <option value="ประจวบคีรีขันธ์">ประจวบคีรีขันธ์</option>
+                        <option value="ราชบุรี">ราชบุรี</option>
+                        <option value="เพชรบุรี">เพชรบุรี</option>
+                    </select>
+                    <span class="error"><< เลือกจังหวัด</span>
+                </div>
+
+                <div id="button_submit">
+                    <button type="submit">Submit</button>
+                    <button type="reset">Cancel</button>
+                </div>
+
+                <!--<p id="demo">hoo</p>-->
+
+                <div class="slogan">
+                    <h2 id="provi"></h2>
+                    <img id="provImg" src="" alt="Picture Slogan" style="width:200px;height:200px;text-align:center;">
+                    <p id="sloganText"></p>
+                </div>
+            </form>
+        </div>
+
+
+
+    </body>
+</html>

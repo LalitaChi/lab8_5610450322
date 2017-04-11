@@ -1,0 +1,83 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 14, 2017, 11:03:13 PM
+    Author     : 708
+*/
+body {
+    background: url(IMG_87385.jpg) no-repeat center fixed; 
+    background-size: cover;
+}
+
+div.container {
+    padding-left: 185px;
+    width: 70%;
+    /*border: 1px solid bisque;*/
+}
+
+header {
+    clear: left;
+    padding: 1em;
+    background: url(yellow.jpg) no-repeat center fixed;
+    background-size: cover;
+    color: darkblue;
+    text-align: center;
+    /*width: 1000px;*/
+    font-family: 'Pridi', serif;
+    font-size: 30px;
+    letter-spacing: 3px;
+}
+
+
+#contact {
+    margin-top: 0px;
+    padding: 20px;
+    font-family: 'Pridi', serif;
+    /*text-align: center;*/
+    background-image: url(back.png); 
+}/*
+
+.contactForm p {
+    padding-left: 300px;
+}
+
+.textfiled {
+    padding-left: 30px;
+}*/
+#contact label{
+    display: inline-block;
+    width: 390px;
+    text-align: right;
+}
+
+#contact div{
+     font-family: 'Pridi', serif;
+    margin-top: 1em;
+}
+
+
+#button_submit {
+    padding-top: 40px;
+    padding-left: 370px;
+}
+
+.error{
+    display: none;
+    margin-left: 10px;
+}		
+
+.error_show{
+    color: red;
+    margin-left: 10px;
+}
+
+input.invalid{
+    border: 2px solid red;
+}
+
+input.valid{
+    border: 2px solid green;
+}

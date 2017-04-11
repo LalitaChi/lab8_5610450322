@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!--5610450322-->
+<html>
+    <head>
+        <title>Constant Contact</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" media="screen" href="style.css?v=8may2013">
+        <link href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald|Roboto+Condensed" rel="stylesheet">
+
+        <script>
+
+            function checkForm() {
+                // validation fails if the input is blank
+                var fName = document.forms["myForm"]["firstname"].value.trim();
+                var lName = document.forms["myForm"]["lastname"].value.trim();
+                var pNumber = document.forms["myForm"]["phone_number"].value.trim().replace("+", "").replace(/-/g, "");
+                var cNumber = document.forms["myForm"]["cell_phone_number"].value.trim().replace("+", "").replace(/-/g, "");
+                var birth = document.forms["myForm"]["birthday"].value.trim();
+                var csNumber = document.forms["myForm"]["citizenship_number"].value.trim().replace(/-/g, "");
+                var zodiacS = document.forms["myForm"]["zodiacSign"].value.trim();
+                var zodiacY = document.forms["myForm"]["zodiacYear"].value.trim();
+                var birthW = document.forms["myForm"]["birth_day_of_week"].value.trim();
+//                document.getElementById('resultBirth').innerHTML = pNumber;
+                if (!isEmpty(fName)) {
+                    alert("Firstname must be filled out!");
+                    document.getElementById('resultFname').innerHTML = ' <img src="https://developer.akamai.com/assets/themes/bootstrap-3/img/asterisk-pr-icon.png" alt="Asterisk_Incorrect" height="15" >';
+                    return false;
+                } else if (!checkLetter(fName)) {
+                    alert("Firstname must be Letter!");
+                    document.getElementById('resultFname').innerHTML = ' <img src="https://developer.akamai.com/assets/themes/bootstrap-3/img/asterisk-pr-icon.png" alt="Asterisk_Incorrect" height="15" >';
+                    return false;
+                } else {
+                    document.getElementById('resultFname').innerHTML = ' <img src="http://carcheckhistory.com.au/asset/images/tick.png" alt="Tick_Correct" height="15" >';
+                }
+
+                if (!isEmpty(lName)) {
+                    alert("Lastname must be filled out!");
+                    document.getElementById('resultLname').innerHTML = ' <img src="https://developer.akamai.com/assets/themes/bootstrap-3/img/asterisk-pr-icon.png" alt="Asterisk_Incorrect" height="15" >';
+                    return false;
+                } else if (!checkLetter(lName)) {
+                    alert("Lastname must be Letter!");
+                    document.getElementById('resultLname').innerHTML = ' <img src="https://developer.akamai.com/assets/themes/bootstrap-3/img/asterisk-pr-icon.png" alt="Asterisk_Incorrect" height="15" >';
+                    return false;
+                } else {
+                    document.getElementById('resultLname').innerHTML = ' <img src="http://carcheckhistory.com.au/asset/images/tick.png" alt="Tick_Correct" height="15" >';
+//                     return false;
+                }
+
+                if (!isEmpty(pNumber)) {
+                    alert("Phone Number must be filled out!");
+                    document.getElementById('resultPnum').innerHTML = ' <img src="https://developer.akamai.com/assets/themes/bootstrap-3/img/asterisk-pr-icon.png" alt="Asterisk_Incorrect" height="15" >';
+                    return false;
+                } else if (!checkNumber(pNumber)) {
+                    alert("Phone number must be number!");
+                    document.getElementById('resultPnum').innerHTML = ' <img src="https://developer.akamai.com/assets/themes/bootstrap-3/img/asterisk-pr-icon.png" alt="Asterisk_Incorrect" height="15" >';
+                    return false;
+                } else if (pNumber.length < 9) {
+                    alert("Phone number must be filled out!");
+                    document.getElementById('resultPnum').innerHTML = ' <img src="https://developer.akamai.com/assets/themes/bootstrap-3/img/asterisk-pr-icon.png" alt="Asterisk_Incorrect" height="15" >';
+                    return false;
+                } else {
+                    document.getElementById('resultPnum').innerHTML = ' <img src="http://carcheckhistory.com.au/asset/images/tick.png" alt="Tick_Correct" height="15" >';
+//                     return false;
+                }
+
+                if (!isEmpty(cNumber)) {
+                    alert("Cell phone number must be filled out!");
+                    document.getElementById('resultCnum').innerHTML = ' <img src="https://developer.akamai.com/assets/themes/bootstrap-3/img/asterisk-pr-icon.png" alt="Asterisk_Incorrect" height="15" >';
+                    return false;
+                } else if (!checkNumber(cNumber)) {
+                    alert("Cell phone number must be number!");
+                    document.getElementById('resultCnum').innerHTML = ' <img src="https://developer.akamai.com/assets/themes/bootstrap-3/img/asterisk-pr-icon.png" alt="Asterisk_Incorrect" height="15" >';
+                    return false;
+                } else if (cNumber.length < 11) {
+                    alert("Cell phone number must be filled out!");
+                    document.getElementById('resultCnum').innerHTML = ' <img src="https://developer.akamai.com/assets/themes/bootstrap-3/img/asterisk-pr-icon.png" alt="Asterisk_Incorrect" height="15" >';
+                    return false;
+                } else {
+                    document.getElementById('resultCnum').innerHTML = ' <img src="http://carcheckhistory.com.au/asset/images/tick.png" alt="Tick_Correct" height="15" >';
+//                     return false;
+                }
+
+                if (!isEmpty(birth)) {
+                    alert("Birthday must be filled out!");
+                    document.getElementById('resultBirth').innerHTML = ' <img src="https://developer.akamai.com/assets/themes/bootstrap-3/img/asterisk-pr-icon.png" alt="Asterisk_Incorrect" height="15" >';
+                    return false;
+                } else {
+                    document.getElementById('resultBirth').innerHTML = ' <img src="http://carcheckhistory.com.au/asset/images/tick.png" alt="Tick_Correct" height="15" >';
+//                     return false;
+                }
+
+                if (!isEmpty(csNumber)) {
+                    alert("Citizenship number must be filled out!");
+                    document.getElementById('resultCsnum').innerHTML = ' <img src="https://developer.akamai.com/assets/themes/bootstrap-3/img/asterisk-pr-icon.png" alt="Asterisk_Incorrect" height="15" >';
+                    return false;
+                } else if (!checkNumber(csNumber)) {
+                    alert("Citizenship number must be number!");
+                    document.getElementById('resultCsnum').innerHTML = ' <img src="https://developer.akamai.com/assets/themes/bootstrap-3/img/asterisk-pr-icon.png" alt="Asterisk_Incorrect" height="15" >';
+                    return false;
+                } else if (csNumber.length < 13) {
+                    alert("Citizenship number must be filled out!");
+                    document.getElementById('resultCsnum').innerHTML = ' <img src="https://developer.akamai.com/assets/themes/bootstrap-3/img/asterisk-pr-icon.png" alt="Asterisk_Incorrect" height="15" >';
+                    return false;
+                } else {
+                    document.getElementById('resultCsnum').innerHTML = ' <img src="http://carcheckhistory.com.au/asset/images/tick.png" alt="Tick_Correct" height="15" >';
+//                     return false;
+                }
+
+                if (!isEmpty(zodiacS)) {
+                    alert("Zodiac sign must be filled out!");
+                    document.getElementById('resultZodiacS').innerHTML = ' <img src="https://developer.akamai.com/assets/themes/bootstrap-3/img/asterisk-pr-icon.png" alt="Asterisk_Incorrect" height="15" >';
+                    return false;
+                } else {
+                    document.getElementById('resultZodiacS').innerHTML = ' <img src="http://carcheckhistory.com.au/asset/images/tick.png" alt="Tick_Correct" height="15" >';
+//                     return false;
+                }
+
+                if (!isEmpty(zodiacY)) {
+                    alert("Zodiac Year must be filled out!");
+                    document.getElementById('resultZodiacY').innerHTML = ' <img src="https://developer.akamai.com/assets/themes/bootstrap-3/img/asterisk-pr-icon.png" alt="Asterisk_Incorrect" height="15" >';
+                    return false;
+                } else {
+                    document.getElementById('resultZodiacY').innerHTML = ' <img src="http://carcheckhistory.com.au/asset/images/tick.png" alt="Tick_Correct" height="15" >';
+//                    return false;
+                }
+                return true;
+
+              
+            }
+
+            function fillPhoneNumber(num) {
+                var number = document.forms["myForm"][num].value;
+                if (number.length == 1 && number != "+") {
+                    number = "+" + number;
+                    document.forms["myForm"][num].value = number;
+                }
+                if (number.length == 4 || number.length == 8) {
+                    number += "-";
+                    document.forms["myForm"][num].value = number;
+                }
+
+
+            }
+
+            function fillCellPhoneNumber(num) {
+                var number = document.forms["myForm"][num].value;
+                if (number.length == 1 && number != "+") {
+                    number = "+" + number;
+                    document.forms["myForm"][num].value = number;
+                }
+                if (number.length == 5 || number.length == 9) {
+                    number += "-";
+                    document.forms["myForm"][num].value = number;
+                }
+            }
+
+            function fillCitizenshipNumber() {
+                var str = document.forms["myForm"]["citizenship_number"].value;
+                if (str.length == 1 || str.length == 6 || str.length == 12 || str.length == 15) {
+                    str += "-";
+                    document.forms["myForm"]["citizenship_number"].value = str
+                }
+            }
+
+            function isEmpty(str) {
+                return (str || 0 !== str.length);
+            }
+
+            function checkNumber(num) {
+                return /^\d+$/.test(num);
+            }
+
+            function checkLetter(str) {
+                return /^[A-Za-z]+$/.test(str);
+            }
+
+            function resetForm() {
+                document.getElementById('resultFname').innerHTML = "";
+                document.getElementById('resultLname').innerHTML = "";
+                document.getElementById('resultPnum').innerHTML = "";
+                document.getElementById('resultCnum').innerHTML = "";
+                document.getElementById('resultCsnum').innerHTML = "";
+                document.getElementById('resultBirth').innerHTML = "";
+                document.getElementById('resultZodiacS').innerHTML = "";
+                document.getElementById('resultZodiacY').innerHTML = "";
+            }
+
+            function InfoForm() {
+                this.firstname = "";
+                this.lastname = "";
+                this.housenumber = "";
+                this.street = "";
+                this.city = "";
+                this.province = "";
+                this.zipcode = "";
+                this.phonenumber = "";
+                this.cellphonenumber = "";
+                this.birthday = "";
+                this.citizenshipnumber = "";
+                this.zodiacsign = "";
+                this.zodiacyear = "";
+                this.birthdayofweek = "";
+            }
+
+            function getInfoForm() {
+                var IF = new InfoForm();
+                IF.firstname = document.forms["myForm"]["firstname"].value;
+                IF.lastname = document.forms["myForm"]["lastname"].value;
+                IF.housenumber = document.forms["myForm"]["house_number"].value;
+                IF.street = document.forms["myForm"]["street"].value;
+                IF.city = document.forms["myForm"]["city"].value;
+                IF.province = document.forms["myForm"]["province"].value;
+                IF.zipcode = document.forms["myForm"]["zipcode"].value;
+                IF.phonenumber = document.forms["myForm"]["phone_number"].value;
+                IF.cellphonenumber = document.forms["myForm"]["cell_phone_number"].value;
+                IF.birthday = document.forms["myForm"]["birthday"].value;
+                IF.citizenshipnumber = document.forms["myForm"]["citizenship_number"].value;
+                IF.zodiacsign = document.forms["myForm"]["zodiacSign"].value;
+                IF.zodiacyear = document.forms["myForm"]["zodiacYear"].value;
+                IF.birthdayofweek = document.forms["myForm"]["birth_day_of_week"].value;
+                return IF;
+            }
+
+            function setInfoForm(info) {
+                document.getElementById("firstname").value = info.firstname;
+                document.getElementById("lastname").value = info.lastname
+                document.getElementById("house_number").value = info.housenumber
+                document.getElementById("street").value = info.street
+                document.getElementById("city").value = info.city
+                document.getElementById("province").value = info.province
+                document.getElementById("zipcode").value = info.zipcode
+                document.getElementById("phone_number").value = info.phonenumber
+                document.getElementById("cell_phone_number").value = info.cellphonenumber
+                document.getElementById("birthday").value = info.birthday
+                document.getElementById("citizenship_number").value = info.citizenshipnumber
+                document.getElementById("zodiacSign").value = info.zodiacsign
+                document.getElementById("zodiacYear").value = info.zodiacyear
+                document.getElementById("birth_day_of_week").value = info.birthdayofweek
+            }
+
+            function setInfo(info) {
+                var jsonData = JSON.stringify(info);
+                setCookie("InfomationContact", jsonData, 30);
+            }
+            function getInfo() {
+                var data = getCookie("InfomationContact");
+                return JSON.parse(data);
+            }
+
+            function setCookie(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                var expires = "expires=" + d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+
+            }
+            function getCookie(cname) {
+                var name = cname + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+
+            function saveInfo() {
+                setInfo(getInfoForm());
+            }
+
+            function resetInfo() {
+                var FreeInfoForm = new InfoForm()()
+                setInfoForm(FreeInfoForm);
+                setInfo(FreeInfoForm);
+            }
+
+            function submitInfo() {
+                var InfoForm = getInfoForm();
+                if (checkForm() == false) {
+                    return;
+                }
+
+                setInfo(InfoForm);
+                alert(InfoForm.firstname + " " + InfoForm.lastname);
+                showInfoTable(InfoForm);
+
+                document.getElementById("contactForm").className = "HideInfo";
+                document.getElementById("tableForm").className = "ShowInfo";
+            }
+
+            function showInfoTable(InfoForm) {
+                var table = "<table class=\"OutputTable\">";
+                table += "<tr><td>Firstname</td><td>" + InfoForm.firstname + "</td></tr>"
+                table += "<tr><td>Lastname</td><td>" + InfoForm.lastname + "</td></tr>"
+                table += "<tr><td>House number</td><td>" + InfoForm.housenumber + "</td></tr>"
+                table += "<tr><td>Street</td><td>" + InfoForm.street + "</td></tr>"
+                table += "<tr><td>City</td><td>" + InfoForm.city + "</td></tr>"
+                table += "<tr><td>Province</td><td>" + InfoForm.province + "</td></tr>"
+                table += "<tr><td>Zipcode</td><td>" + InfoForm.zipcode + "</td></tr>"
+                table += "<tr><td>Phone number</td><td>" + InfoForm.phonenumber + "</td></tr>"
+                table += "<tr><td>Cell phone number</td><td>" + InfoForm.cellphonenumber + "</td></tr>"
+                table += "<tr><td>Birthday</td><td>" + InfoForm.birthdate + "</td></tr>"
+                table += "<tr><td>Citizenship number</td><td>" + InfoForm.citizenshipmember + "</td></tr>"
+                table += "<tr><td>Zodiac Sign</td><td>" + InfoForm.zodiacsign + "</td></tr>"
+                table += "<tr><td>Zodiac Year</td><td>" + InfoForm.zodiacyear + "</td></tr>"
+                table += "<tr><td>Birth day of Week</td><td>" + InfoForm.birthdayofweek + "</td></tr>"
+                table += "</table>";
+                document.getElementById("tableForm").innerHTML = table;
+            }
+            setInfoForm(getInfo());
+        </script>
+
+    </head>
+    <body>
+        <section>
+            <div class="icon">
+                <img src="e-form-icon.png" alt="constant_contact" style="width:40px; height:40px;">
+                <h4>Constant Contact</h4>
+            </div>
+            <header class="head" role="banner">
+                <h1>Contact Form.</h1>
+                <p>*Please fill out all the form below.</p>
+            </header>
+        </section>
+
+        <div id="contactForm">
+            <form name="myForm" id="myForm">
+                <div class="divTable">
+                    <div class="divRow">
+                        <div class="divCell1">Firstname</div>
+                        <div class="divCell2"><input type="text" name="firstname" value=""> <span id = "resultFname"></span></div>
+
+                    </div>
+
+                    <div class="divRow">
+                        <div class="divCell1">Lastname</div>
+                        <div class="divCell2"><input type="text" name="lastname" value=""> <span id = "resultLname"></span></div>
+
+                    </div>
+                    <div class="divRow">
+                        <div class="divCell1">Address</div>
+                        <div class="divCell2"><ul>
+                                <li>
+                                    <input type="text" name="house_number" placeholder="House number" value="">
+                                </li>
+                                <li>
+                                    <input type="text" name="street" placeholder="Street" value="">
+                                </li>
+                                <li>
+                                    <input type="text" name="city" placeholder="City" value="">
+                                </li>
+                                <li>
+                                    <input type="text" name="province" placeholder="Province" value="">
+                                </li>
+                                <li>
+                                    <input type="text" name="zipcode" placeholder="Zipcode" value="">
+                                </li>
+                            </ul></div>
+
+                    </div>
+
+                    <div class="divRow">
+                        <div class="divCell1">Phone number</div>
+                        <div class="divCell2"> <input type="text" name="phone_number" onkeypress="fillPhoneNumber('phone_number')" placeholder="+662-xxx-xxx" maxlength="12" value="+622"> <span id = "resultPnum"></span></div>
+                    </div>
+
+                    <div class="divRow">
+                        <div class="divCell1">Cell phone number</div>
+                        <div class="divCell2"> <input type="text" name="cell_phone_number" onkeypress="fillCellPhoneNumber('cell_phone_number')" placeholder="+66xx‐xxx‐xxxx" maxlength="14" value="+66"> <span id = "resultCnum"></span></div>
+                    </div>
+
+                    <div class="divRow">
+                        <div class="divCell1">Birthday</div>
+                        <div class="divCell2"><input type="date" name="birthday" value=""><span id = "resultBirth"></span></div>
+
+                    </div>
+
+                    <div class="divRow">
+                        <div class="divCell1">Citizenship number</div>
+                        <div class="divCell2"><input type="text" name="citizenship_number" onkeypress="fillCitizenshipNumber()" maxlength="17" value=""><span id = "resultCsnum"></span></div>
+
+                    </div>
+
+                    <div class="divRow">
+                        <div class="divCell1">Zodiac Sign</div>
+                        <div class="divCell2">
+                            <input type="radio" name="zodiacSign" value="Aries"><img src="zodiacSign/aries.png" alt="Aries" height="60"> Aries &emsp;&emsp;<span id = "resultZodiacS"></span><br>
+                            <input type="radio" name="zodiacSign" value="Taurus"><img src="zodiacSign/taurus.png" alt="Taurus" height="60"> Taurus<br>
+                            <input type="radio" name="zodiacSign" value="Gemini"><img src="zodiacSign/gemini.png" alt="Gemini" height="60"> Gemini<br>
+                            <input type="radio" name="zodiacSign" value="Cancer"><img src="zodiacSign/cancer.png" alt="Cancer" height="60"> Cancer<br>
+                            <input type="radio" name="zodiacSign" value="Leo"><img src="zodiacSign/leo.png" alt="Leo" height="60"> Leo<br>
+                            <input type="radio" name="zodiacSign" value="Virgo"><img src="zodiacSign/virgo.png" alt="Virgo" height="60"> Virgo<br>
+                            <input type="radio" name="zodiacSign" value="Libra"><img src="zodiacSign/libra.png" alt="Libra" height="60"> Libra<br>
+                            <input type="radio" name="zodiacSign" value="Scorpio"><img src="zodiacSign/scorpion.png" alt="Scorpio" height="60"> Scorpio<br>
+                            <input type="radio" name="zodiacSign" value="Sagittarius"><img src="zodiacSign/sagittarius.png" alt="Sagittarius" height="60"> Sagittarius<br>
+                            <input type="radio" name="zodiacSign" value="Capricorn"><img src="zodiacSign/capricorn.png" alt="Capricorn" height="60"> Capricorn<br>
+                            <input type="radio" name="zodiacSign" value="Aquarius"><img src="zodiacSign/aquarius.png" alt="Aquarius" height="60"> Aquarius<br>
+                            <input type="radio" name="zodiacSign" value="Pisces"><img src="zodiacSign/pisces.png" alt="Pisces" height="60"> Pisces
+
+                        </div>
+
+                    </div>
+
+                    <div class="divRow">
+                        <div class="divCell1">Zodiac Year</div>
+                        <div class="divCell2"><input type="radio" name="zodiacYear" value="Rat"><img src="zodiacYear/rat.png" alt="Rat" height="60"> Rat &emsp;&emsp;<span id = "resultZodiacY"></span><br>
+                            <input type="radio" name="zodiacYear" value="Ox"><img src="zodiacYear/ox.png" alt="Ox" height="60"> Ox<br>
+                            <input type="radio" name="zodiacYear" value="Tiger"><img src="zodiacYear/tiger.png" alt="Tiger" height="60"> Tiger<br>
+                            <input type="radio" name="zodiacYear" value="Rabbit"><img src="zodiacYear/rabbit.png" alt="Rabbit" height="60"> Rabbit<br>
+                            <input type="radio" name="zodiacYear" value="Dragon"><img src="zodiacYear/dragon.png" alt="Dragon" height="60"> Dragon<br>
+                            <input type="radio" name="zodiacYear" value="Snake"><img src="zodiacYear/snake.png" alt="Snake" height="60"> Snake<br>
+                            <input type="radio" name="zodiacYear" value="Horse"><img src="zodiacYear/horse.png" alt="Horse" height="60"> Horse<br>
+                            <input type="radio" name="zodiacYear" value="Goat"><img src="zodiacYear/goat.png" alt="Goat" height="60"> Goat<br>
+                            <input type="radio" name="zodiacYear" value="Monkey"><img src="zodiacYear/monkey.png" alt="Monkey" height="60"> Monkey<br>
+                            <input type="radio" name="zodiacYear" value="Rooster"><img src="zodiacYear/rooster.png" alt="Rooster" height="60"> Rooster<br>
+                            <input type="radio" name="zodiacYear" value="Dog"><img src="zodiacYear/dog.png" alt="Dog" height="60"> Dog<br>
+                            <input type="radio" name="zodiacYear" value="Pig"><img src="zodiacYear/pig.png" alt="Pig" height="60"> Pig
+
+                        </div>
+
+                    </div>
+
+                    <div class="divRow">
+                        <div class="divCell1">Birth Day of Week</div>
+                        <div class="divCell2">
+                            <select name="birth_day_of_week">
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="divRow">
+                        <input type="button" onclick="return saveInfo()" value="Save">
+                        <input type="submit" onclick="return submitInfo()" value="Submit">
+                        <input type="reset" onclick="return resetForm()" value="Cancel">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="tableForm">
+
+        </div>
+    </body>
+</html>
