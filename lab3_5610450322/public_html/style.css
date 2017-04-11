@@ -1,0 +1,102 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 7, 2017, 10:49:46 AM
+    Author     : 708
+*/
+body {
+    background-color: #dd3109;
+    font-family: 'Roboto Condensed', sans-serif;
+
+}
+
+.icon{
+    margin: -10px;
+    width: 1200px;
+    height: 120px;
+    padding-left: 200px;
+    background-color: #b62206;
+}
+
+.icon h4{
+    margin-top: -35px;
+    padding-left: 50px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    color: #f9ebbe;
+    letter-spacing: 4px; 
+}
+
+.icon img{
+    padding-top: 40px;
+}
+
+.head {
+    font-family: 'Oswald', sans-serif;
+    font-size: 32px;
+    color: #f9ebbe;
+    letter-spacing: 4px; 
+    padding-top: 30px;
+    padding-left: 200px;
+}
+
+.head p {
+    margin-top: -30px;
+    font-size: 15px;
+}
+
+/*.form {
+    margin-left: 180px;
+    margin-right: 180px;
+    padding: 100px 100px 50px 350px;
+    line-height: 3em; 
+    background-color: #f9ebba;  
+    border: 10px solid #b62206;
+    border-radius: 15px;
+}*/
+
+.divTable {
+    margin-left: 100px;
+    display: table;
+    width: auto;
+    background-color: bisque;
+    border: 5px solid #b62206;
+    border-spacing: 5px;
+}
+
+.divRow {
+    display:table-row;
+    width:auto;
+}
+
+.divCell2 {
+    float:left;
+    display:table-column;
+    width:500px;
+    line-height: 2em;
+    background-color: orangered;
+    color: #f9ebbe;
+    font-size: 18px;
+}
+
+.divCell1 {
+    float:left;
+    font-size: 18px;
+    color: #f9ebbe;
+    display:table-column;
+    width:500px;
+    line-height: 2em;
+    background-color: orangered;
+    padding-left: 50px;
+}
+
+.HideInfo {
+    display: none;
+}
+
+.ShowInfo {
+    display: block;
+}
