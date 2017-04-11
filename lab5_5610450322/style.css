@@ -1,0 +1,132 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 14, 2017, 11:03:13 PM
+    Author     : 708
+*/
+
+body {
+    background: url(IMG_87385.jpg) no-repeat center fixed; 
+    background-size: cover;
+}
+
+div.container {
+    padding-left: 185px;
+    width: 70%;
+    /*border: 1px solid bisque;*/
+}
+
+header {
+    clear: left;
+    padding: 1em;
+    background: url(yellow.jpg) no-repeat center fixed;
+    background-size: cover;
+    color: darkblue;
+    text-align: center;
+    /*width: 1000px;*/
+    font-family: 'Pridi', serif;
+    font-size: 40px;
+    letter-spacing: 3px;
+}
+
+
+#contact {
+    margin-top: 0px;
+    padding: 20px;
+    font-family: 'Pridi', serif;
+    /*text-align: center;*/
+    background: url(back.png); 
+}
+
+#contact label{
+    display: inline-block;
+    width: 390px;
+    text-align: right;
+}
+
+#contact div{
+    font-family: 'Pridi', serif;
+    margin-top: 1em;
+}
+
+
+#button_submit {
+    padding-top: 40px;
+    padding-left: 370px;
+}
+
+.error{
+    display: none;
+    margin-left: 10px;
+}		
+
+.error_show{
+    color: red;
+    margin-left: 10px;
+}
+
+input.invalid{
+    border: 2px solid red;
+}
+
+input.valid{
+    border: 2px solid green;
+}
+
+h2{
+    color: darkblue; 
+    font-size: 40px;
+}
+
+p {
+    color: darkblue; 
+    font-size: 26px;
+}
+
+.slogan {
+    text-align: center;
+}
+
+.childBody {
+    background: url(IMG_211515.jpg) no-repeat center fixed; 
+    background-size: cover;
+}
+
+.childHead{
+    background: url(yellow-orange-background.jpg) no-repeat center;
+    background-size: cover;
+}
+.childForm {
+    background: url(orback.png); 
+}
+
+.womenBody {
+    background: url(IMG_139311.jpg) no-repeat center fixed; 
+    background-size: cover;
+}
+
+.womenHead {
+    background: url(pink-curves-wallpaper-3.jpg) no-repeat center;
+    background-size: cover;
+}
+
+.womenForm {
+    background: url(pinkback.png); 
+}
+
+.menBody {
+    background: url(IMG_128147.jpg) no-repeat center fixed; 
+    background-size: cover;
+}
+
+.menHead {
+    background: url(b1.jpg) no-repeat center;
+    background-size: cover;
+}
+
+.menForm {
+    background: url(grayback.png); 
+}
